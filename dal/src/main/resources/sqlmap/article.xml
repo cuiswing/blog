@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：命名空间，用于隔离sql，namespace必须和Mapper接口类路径一致 -->
+<mapper namespace="com.cui.blog.dal.mapper.ArticleMapper">
+
+    <!--根据id获取数据-->
+    <select id="getById" parameterType="int" resultType="com.cui.blog.dal.po.ArticleDO">
+        SELECT * FROM `article` WHERE enabled=1 AND id = #{id}
+    </select>
+
+    <!-- 如果返回多个结果，mybatis会自动把返回的结果放在list容器中 -->
+    <!-- resultType的配置和返回一个结果的配置一样 -->
+    <select id="listAll" parameterType="int" resultType="com.cui.blog.dal.po.ArticleDO">
+        SELECT * FROM `article`  WHERE enabled=1
+    </select>
+
+    <!-- 保存 -->
+    <insert id="save" parameterType="com.cui.blog.dal.po.ArticleDO">
+        INSERT INTO `article`(title,content,article_category_id,category_name)
+        VALUES
+        (#{title},#{content},#{articleCategoryId},#{categoryName})
+    </insert>
+
+    <!-- 保存并返回自增主键id -->
+    <insert id="saveAndReturnKey" parameterType="com.cui.blog.dal.po.ArticleDO">
+        <selectKey keyColumn="id" keyProperty="id" order="AFTER" resultType="int">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO `article`(title,content,article_category_id,category_name)
+        VALUES
+        (#{title},#{content},#{articleCategoryId},#{categoryName})
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.cui.blog.dal.po.ArticleDO">
+        UPDATE `article` SET
+        title=#{title},
+        content=#{content},
+        visit_count=#{visitCount},
+        comment_count=#{commentCount},
+        article_category_id=#{articleCategoryId},
+        category_name=#{categoryName}
+        WHERE enabled=1 AND id = #{id}
+    </update>
+
+    <!-- 删除 -->
+    <delete id="delete" parameterType="int">
+        UPDATE `article` SET
+        enabled=0
+        WHERE enabled=1 AND id = #{id}
+    </delete>
+
+
+</mapper>

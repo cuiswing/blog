@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：命名空间，用于隔离sql，namespace必须和Mapper接口类路径一致 -->
+<mapper namespace="com.cui.blog.dal.mapper.ArticleCategoryMapper">
+
+    <!--根据id获取数据-->
+    <select id="getById" parameterType="int" resultType="com.cui.blog.dal.po.ArticleCategoryDO">
+        SELECT * FROM `article_category` WHERE enabled=1 AND id = #{id}
+    </select>
+
+    <!-- 如果返回多个结果，mybatis会自动把返回的结果放在list容器中 -->
+    <!-- resultType的配置和返回一个结果的配置一样 -->
+    <select id="listAll" resultType="com.cui.blog.dal.po.ArticleCategoryDO">
+        SELECT * FROM `article_category`  WHERE enabled=1
+    </select>
+
+    <!-- 保存 -->
+    <insert id="save" parameterType="com.cui.blog.dal.po.ArticleCategoryDO">
+        INSERT INTO `article_category`(category_name)
+        VALUES
+        (#{categoryName})
+    </insert>
+
+    <!-- 保存并返回自增主键id -->
+    <insert id="saveAndReturnKey" parameterType="com.cui.blog.dal.po.ArticleCategoryDO">
+        <!-- selectKey 标签实现主键返回 -->
+        <!-- keyColumn:主键对应的表中的哪一列 -->
+        <!-- keyProperty：主键对应的pojo中的哪一个属性 -->
+        <!-- order：设置在执行insert语句之前还是之后执行查询id的sql,如果使用程序中的自定义主键，如uuid，则可使用before，现获取id再关联其他数据，按需来 -->
+        <!-- resultType：设置返回的id的类型 -->
+        <selectKey keyColumn="id" keyProperty="id" order="AFTER" resultType="int">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO `article_category`(category_name)
+        VALUES
+        (#{categoryName})
+    </insert>
+
+    <!-- 更新 -->
+    <update id="update" parameterType="com.cui.mybatis.dataobject.OrdUser">
+        UPDATE `article_category` SET
+        category_name=#{categoryName},
+        article_count=#{articleCount}
+        WHERE enabled=1 AND id = #{id}
+    </update>
+
+    <!-- 删除 -->
+    <delete id="delete" parameterType="int">
+        UPDATE `article_category` SET
+        enabled=0
+        WHERE enabled=1 AND id = #{id}
+    </delete>
+
+
+</mapper>
