@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>blog-parent</artifactId>
+        <groupId>com.cui.blog</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>assembly</artifactId>
+    <packaging>pom</packaging>
+
+    <description>
+        貌似这个项目只能单独建一个模块，我在parent项目中打包时出错了，可参见邮件列表：https://mail-archives.apache.org/mod_mbox/maven-users/200709.mbox/%3C9AB4FF82-4097-4391-B1DC-9C7A7217D9E0@commonjava.org%3E
+    </description>
+
+    <properties>
+        <assembly.name>blog</assembly.name>
+    </properties>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>../conf</directory>
+                <targetPath>${basedir}/../target/${assembly.name}.cui</targetPath>
+                <filtering>false</filtering>
+                <excludes>
+                    <exclude>**/filter/**</exclude>
+                </excludes>
+            </resource>
+
+            <resource>
+                <directory>../conf/config</directory>
+                <targetPath>${basedir}/../target/${assembly.name}.cui/config</targetPath>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+
+            <resource>
+                <directory>../webdoc</directory>
+                <targetPath>${basedir}/../target/${assembly.name}.cui/webdoc</targetPath>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+
+        <!--<filters>-->
+        <!--<filter>../conf/filter/dubbo.properties.default</filter>-->
+        <!--<filter>../conf/filter/application.properties.default</filter>-->
+        <!--</filters>-->
+
+        <plugins>
+            <!--这个插件要带上，不然无法复制资源文件-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.0.2</version>
+                <executions>
+                    <execution>
+                        <id>copy-conf</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>resources</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>distribution-assembly</id><!--名字任意 -->
+                        <phase>package</phase>   <!-- 绑定到package生命周期阶段上 -->
+                        <goals>
+                            <goal>single</goal>   <!-- 只运行一次 -->
+                        </goals>
+                        <configuration>
+                            <outputDirectory>../target</outputDirectory>
+                            <attach>false</attach>    <!--这样配置后，mvn deploy不会把assembly打的zip包上传到nexus-->
+                            <appendAssemblyId>false</appendAssemblyId>
+                            <finalName>${assembly.name}</finalName>
+                            <descriptors> <!--描述文件路径-->
+                                <descriptor>assembly.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>

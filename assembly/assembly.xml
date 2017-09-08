@@ -1,0 +1,57 @@
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
+
+    <!--参考文档：http://maven.apache.org/plugins/maven-assembly-plugin/assembly.html-->
+    <id>assembly</id>
+    <formats>
+        <format>war</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+
+    <moduleSets>
+        <moduleSet>
+            <useAllReactorProjects>true</useAllReactorProjects>
+
+            <binaries>
+                <outputDirectory>WEB-INF/lib</outputDirectory>
+                <unpack>false</unpack>
+                <includeDependencies>true</includeDependencies>
+
+                <dependencySets>
+                    <dependencySet>
+                        <outputDirectory>WEB-INF/lib</outputDirectory>
+                        <excludes>
+                            <exclude>${project.groupId}:${assembly.name}*</exclude>
+                        </excludes>
+                    </dependencySet>
+                </dependencySets>
+            </binaries>
+        </moduleSet>
+    </moduleSets>
+
+    <fileSets>
+        <fileSet>
+            <directory>${basedir}/../target/${assembly.name}.cui/webdoc</directory>
+            <includes>
+                <include>**/*.*</include>
+            </includes>
+            <outputDirectory>./</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>${basedir}/../target/${assembly.name}.cui/config</directory>
+            <includes>
+                <include>**/*.xml</include>
+                <include>**/*.properties</include>
+            </includes>
+            <outputDirectory>WEB-INF/</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>target/${assembly.name}.cui/config</directory>
+            <includes>
+                <include>**/blog.properties</include>
+            </includes>
+            <outputDirectory>WEB-INF/classes</outputDirectory>
+        </fileSet>
+    </fileSets>
+
+</assembly>
