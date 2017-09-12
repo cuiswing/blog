@@ -13,7 +13,7 @@
     <packaging>pom</packaging>
 
     <description>
-        貌似这个项目只能单独建一个模块，我在parent项目中打包时出错了，可参见邮件列表：https://mail-archives.apache.org/mod_mbox/maven-users/200709.mbox/%3C9AB4FF82-4097-4391-B1DC-9C7A7217D9E0@commonjava.org%3E
+        貌似这个打包功能只能单独建一个模块，我在parent项目中打包时出错了，可参见邮件列表：https://mail-archives.apache.org/mod_mbox/maven-users/200709.mbox/%3C9AB4FF82-4097-4391-B1DC-9C7A7217D9E0@commonjava.org%3E
     </description>
 
     <properties>
