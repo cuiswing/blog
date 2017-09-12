@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee">
+
+    <description>My Blog Project</description>
+
+    <!--Spring MVC的前端控制器-->
+    <servlet>
+        <servlet-name>springmvc</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+        <!--default spring file localtion:/WEB-INF/servlet-name-servlet.xml-->
+        <!--<init-param>-->
+        <!--<param-name>contextConfigLocation</param-name>-->
+        <!--<param-value>/WEB-INF/springmvc-servlet.xml</param-value>-->
+        <!--</init-param>-->
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>springmvc</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <!-- ContextLoaderListener用来加载所有的Spring配置bean，
+     dal模块中的spring/blog-dal-beans.xml配置文件是通过contextConfigLocation参数来指定的，
+     但是必须要配置此ContextLoaderListener才能加载。
+     contextConfigLocation参数是配合ContextLoaderListener来使用的，有时间了再去看看源码是怎么用的-->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath*:spring/*.xml</param-value>
+    </context-param>
+
+
+</web-app>
