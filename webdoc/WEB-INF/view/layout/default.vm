@@ -1,0 +1,30 @@
+##这样能够确保在每个浏览器中拥有一致的展现
+<!DOCTYPE html>
+##指定lang属性,为文档设置正确的语言,有助于语音合成工具确定其所应该采用的发音，有助于翻译工具确定其翻译时所应遵守的规则
+<html lang="zh-CN">
+<head>
+##    声明字符编码，能够确保浏览器快速并容易的判断页面内容的渲染方式
+    <meta charset="utf-8">
+##    通过特定的 <meta> 标签来确定绘制当前页面所应该采用的IE版本。除非有强烈的特殊需求，否则最好是设置为 edge mode，从而通知 IE 采用其所支持的最新的模式。
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+##    包含头部信息用于适应不同设备
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="_csrf" content="${_csrf.token}"/>
+    <!-- default header name is X-CSRF-TOKEN -->
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
+    <title>Blog后台管理系统</title>
+    #parse("widget/css-loader.vm")
+</head>
+
+<body>
+
+<div>
+
+## 解释一下：如果你在处理某个请求时返回了a.vm模板，那么最终返回的页面是：将a.vm模板的内容填充layout页面的$screen_content占位符的内容，然后再将整个填充后的页面返回给用户。
+## 如果有兴趣可以看一下大致的实现原理，其实很简单，就是先调用velocity引擎渲染请求返回的模板，将该渲染结果（一个String类型的字符串）作为一参数传递给layout页面，参数名称就是screen_content，然后再次调用引擎渲染layout页面，这样就会把该screen_content参数对应的值作为页面的一部分渲染出来了，从而实现整个页面的布局功能。
+    $screen_content
+</div>
+    #parse("widget/js-loader.vm")
+</body>
+
+</html>
