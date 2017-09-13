@@ -45,6 +45,10 @@
                 <directory>../webdoc</directory>
                 <targetPath>${basedir}/../target/${assembly.name}.cui/webdoc</targetPath>
                 <filtering>false</filtering>
+                <excludes>
+                    <exclude>**/pom.xml</exclude>
+                    <exclude>**/*.iml</exclude>
+                </excludes>
             </resource>
         </resources>
 

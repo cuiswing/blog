@@ -46,7 +46,7 @@
             <outputDirectory>WEB-INF/</outputDirectory>
         </fileSet>
         <fileSet>
-            <directory>target/${assembly.name}.cui/spring</directory>
+            <directory>${basedir}/../target/${assembly.name}.cui/config</directory>
             <includes>
                 <include>**/blog.properties</include>
             </includes>
