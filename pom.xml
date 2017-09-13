@@ -29,6 +29,7 @@
         <servlet.version>4.0.0</servlet.version>
         <velocity.version>1.7</velocity.version>
         <velocity.tools.version>2.0</velocity.tools.version>
+        <jackson.version>2.9.1</jackson.version>
 
     </properties>
 
@@ -153,6 +154,18 @@
                 <artifactId>velocity-tools</artifactId>
                 <version>${velocity.tools.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+
 
         </dependencies>
 
