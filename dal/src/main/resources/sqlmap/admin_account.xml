@@ -10,6 +10,11 @@
         SELECT * FROM `admin_account` WHERE enabled=1 AND id = #{id}
     </select>
 
+    <!--根据账户名获取账户数据-->
+    <select id="getByUsername" parameterType="String" resultType="com.cui.blog.dal.po.AdminAccountDO">
+        SELECT * FROM `admin_account` WHERE enabled=1 AND account_name = #{accountName}
+    </select>
+
     <!-- 如果返回多个结果，mybatis会自动把返回的结果放在list容器中 -->
     <!-- resultType的配置和返回一个结果的配置一样 -->
     <select id="listAll" parameterType="int" resultType="com.cui.blog.dal.po.AdminAccountDO">
@@ -36,9 +41,15 @@
     <!-- 更新 -->
     <update id="update" parameterType="com.cui.blog.dal.po.AdminAccountDO">
         UPDATE `admin_account` SET
-        password=#{password},
         cellphone=#{cellphone},
         email=#{email}
+        WHERE enabled=1 AND id = #{id}
+    </update>
+
+    <!-- 修改密码 -->
+    <update id="updatePassword" parameterType="com.cui.blog.dal.po.AdminAccountDO">
+        UPDATE `admin_account` SET
+        password=#{password}
         WHERE enabled=1 AND id = #{id}
     </update>
 

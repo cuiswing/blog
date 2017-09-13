@@ -9,6 +9,7 @@ import java.util.List;
  * Created by cuishixiang on 2017-09-07.
  */
 public interface AdminAccountMapper {
+
     /**
      * 根据id获取账号
      *
@@ -16,6 +17,14 @@ public interface AdminAccountMapper {
      * @return 账号信息
      */
     AdminAccountDO getById(Integer id);
+
+    /**
+     * 根据账户名获取账户数据
+     *
+     * @param username 账号
+     * @return 账号信息
+     */
+    AdminAccountDO getByUsername(String username);
 
     /**
      * 获取所有账号信息
@@ -39,6 +48,14 @@ public interface AdminAccountMapper {
      * @return 数据库影响行数
      */
     int update(AdminAccountDO adminAccountDO);
+
+    /**
+     * 修改密码
+     *
+     * @param adminAccountDO 账号
+     * @return 数据库影响行数
+     */
+    int updatePassword(AdminAccountDO adminAccountDO);
 
     /**
      * 删除
