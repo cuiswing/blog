@@ -39,6 +39,7 @@
 <script src="${rc.contextPath}/js/plugins/index3.js" type="text/javascript"></script>
 <script src="${rc.contextPath}/js/plugins/tasks.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
+<script src="${rc.contextPath}/js/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
 <script>
     jQuery(document).ready(function() {
         Metronic.init(); // init metronic core componets
