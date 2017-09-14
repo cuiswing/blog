@@ -6,22 +6,6 @@
 
     <description>My Blog Project</description>
 
-    <!--Spring MVC的前端控制器-->
-    <servlet>
-        <servlet-name>springmvc</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-        <!--default spring file localtion:/WEB-INF/servlet-name-servlet.xml-->
-        <!--<init-param>-->
-        <!--<param-name>contextConfigLocation</param-name>-->
-        <!--<param-value>/WEB-INF/springmvc-servlet.xml</param-value>-->
-        <!--</init-param>-->
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>springmvc</servlet-name>
-        <url-pattern>/</url-pattern>
-    </servlet-mapping>
-
     <!-- ContextLoaderListener用来加载所有的Spring配置bean，
      dal模块中的spring/blog-dal-beans.xml配置文件是通过contextConfigLocation参数来指定的，
      但是必须要配置此ContextLoaderListener才能加载。
@@ -51,6 +35,31 @@
         <filter-name>encodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
+    <filter>
+        <filter-name>sessionFilter</filter-name>
+        <filter-class>com.cui.blog.web.filter.SessionFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>sessionFilter</filter-name>
+        <url-pattern>/admin/*</url-pattern>
+    </filter-mapping>
+
+    <!--Spring MVC的前端控制器-->
+    <servlet>
+        <servlet-name>springmvc</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+        <!--default spring file localtion:/WEB-INF/servlet-name-servlet.xml-->
+        <!--<init-param>-->
+        <!--<param-name>contextConfigLocation</param-name>-->
+        <!--<param-value>/WEB-INF/springmvc-servlet.xml</param-value>-->
+        <!--</init-param>-->
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>springmvc</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
 
     <welcome-file-list>
         <welcome-file>adminAccount/login</welcome-file>
