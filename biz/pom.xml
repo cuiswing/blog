@@ -12,4 +12,18 @@
     <artifactId>blog-biz</artifactId>
 
 
+    <dependencies>
+        <dependency>
+            <groupId>com.cui.blog</groupId>
+            <artifactId>blog-dal</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.cui.common</groupId>
+            <artifactId>util</artifactId>
+        </dependency>
+
+
+    </dependencies>
+
+
 </project>
