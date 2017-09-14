@@ -26,7 +26,7 @@ public class MD5Util {
      * @param texts 多个文本连接后一起加密
      * @return 加密后的字符
      */
-    public static String eccrypt(String... texts) {
+    public static String encrypt(String... texts) {
         StringJoiner joinText = new StringJoiner("、");
         for (String text : texts) {
             joinText.add(text);
