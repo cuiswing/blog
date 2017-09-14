@@ -8,7 +8,7 @@ import java.util.List;
  * Mapper接口：comment
  * Created by cuishixiang on 2017-09-07.
  */
-public interface CommentMapper {
+public interface CommentDAO {
 
     /**
      * 根据id获取评论

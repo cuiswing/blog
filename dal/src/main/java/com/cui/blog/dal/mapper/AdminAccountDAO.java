@@ -8,7 +8,7 @@ import java.util.List;
  * Mapper接口：admin_account
  * Created by cuishixiang on 2017-09-07.
  */
-public interface AdminAccountMapper {
+public interface AdminAccountDAO {
 
     /**
      * 根据id获取账号

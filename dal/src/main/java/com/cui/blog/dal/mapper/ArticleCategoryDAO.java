@@ -8,7 +8,7 @@ import java.util.List;
  * Mapper接口：article_category
  * Created by cuishixiang on 2017-09-07.
  */
-public interface ArticleCategoryMapper {
+public interface ArticleCategoryDAO {
     /**
      * 根据id获取文章类别
      *

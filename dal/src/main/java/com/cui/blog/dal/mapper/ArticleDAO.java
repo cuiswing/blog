@@ -8,7 +8,7 @@ import java.util.List;
  * Mapper接口：article
  * Created by cuishixiang on 2017-09-07.
  */
-public interface ArticleMapper {
+public interface ArticleDAO {
     /**
      * 根据id获取文章
      *
