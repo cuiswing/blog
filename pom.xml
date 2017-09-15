@@ -197,6 +197,14 @@
         </dependency>
     </dependencies>
 
+    <repositories>
+        <repository>
+            <id>Nuxeo-Releases</id>
+            <name>servlet-api 3.0.1 这个包只能在这个仓库（Nuxeo Releases Repository）下载了，😔哎，真是没办法</name>
+            <url>https://maven-eu.nuxeo.org/nexus/content/repositories/public-releases</url>
+        </repository>
+    </repositories>
+
     <build>
         <!--生命周期、阶段、插件、目标 这几个搞懂就会用插件了，可查阅maven实战第七章-->
         <plugins>
