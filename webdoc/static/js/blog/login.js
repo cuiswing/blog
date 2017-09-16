@@ -5,7 +5,6 @@ $(document).ready(function () {
         data: {
             params: {}
         },
-        ready: {},
         methods: {
             login: function () {
                 $.ajax({
