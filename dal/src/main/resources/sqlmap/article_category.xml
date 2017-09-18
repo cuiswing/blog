@@ -3,16 +3,32 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- namespace：命名空间，用于隔离sql，namespace必须和Mapper接口类路径一致 -->
-<mapper namespace="com.cui.blog.dal.mapper.ArticleCategoryDAO">
+<mapper namespace="com.cui.blog.dal.dao.ArticleCategoryDAO">
+
+    <resultMap id="ArticleCategoryMap" type="com.cui.blog.dal.po.ArticleCategoryDO">
+        <id column="id" property="id" jdbcType="INTEGER" javaType="INTEGER"/>
+        <result column="enabled" property="enabled" jdbcType="INTEGER" javaType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="create_user" property="createUser" jdbcType="INTEGER" javaType="INTEGER"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="update_user" property="updateUser" jdbcType="INTEGER" javaType="INTEGER"/>
+        <result column="category_name" property="categoryName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="article_count" property="articleCount" jdbcType="INTEGER" javaType="INTEGER"/>
+    </resultMap>
 
     <!--根据id获取数据-->
-    <select id="getById" parameterType="int" resultType="com.cui.blog.dal.po.ArticleCategoryDO">
+    <select id="getById" parameterType="int" resultMap="ArticleCategoryMap">
         SELECT * FROM `article_category` WHERE enabled=1 AND id = #{id}
     </select>
 
+    <!--根据名称获取同名的数量-->
+    <select id="getCountByName" parameterType="String" resultType="int">
+        SELECT count(*) FROM `article_category` WHERE enabled=1 AND category_name = #{categoryName}
+    </select>
+
     <!-- 如果返回多个结果，mybatis会自动把返回的结果放在list容器中 -->
-    <!-- resultType的配置和返回一个结果的配置一样 -->
-    <select id="listAll" resultType="com.cui.blog.dal.po.ArticleCategoryDO">
+    <!-- resultMap的配置和返回一个结果的配置一样 -->
+    <select id="listAll" resultMap="ArticleCategoryMap">
         SELECT * FROM `article_category`  WHERE enabled=1
     </select>
 

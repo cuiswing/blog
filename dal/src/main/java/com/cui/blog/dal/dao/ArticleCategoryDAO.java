@@ -1,4 +1,4 @@
-package com.cui.blog.dal.mapper;
+package com.cui.blog.dal.dao;
 
 import com.cui.blog.dal.po.ArticleCategoryDO;
 
@@ -33,6 +33,14 @@ public interface ArticleCategoryDAO {
     int save(ArticleCategoryDO articleCategoryDO);
 
     /**
+     * 保存并返回自增主键id
+     *
+     * @param articleCategoryDO 文章类别
+     * @return 数据库影响行数
+     */
+    int saveAndReturnKey(ArticleCategoryDO articleCategoryDO);
+
+    /**
      * 更新
      *
      * @param articleCategoryDO 文章类别
@@ -47,4 +55,12 @@ public interface ArticleCategoryDAO {
      * @return 数据库影响行数
      */
     int delete(Integer id);
+
+    /**
+     * 获取同名的类别数量
+     *
+     * @param categoryName 类别名称
+     * @return 数量
+     */
+    int getCountByName(String categoryName);
 }
