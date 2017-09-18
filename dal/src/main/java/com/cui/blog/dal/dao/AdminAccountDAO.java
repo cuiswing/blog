@@ -1,4 +1,4 @@
-package com.cui.blog.dal.mapper;
+package com.cui.blog.dal.dao;
 
 import com.cui.blog.dal.po.AdminAccountDO;
 
