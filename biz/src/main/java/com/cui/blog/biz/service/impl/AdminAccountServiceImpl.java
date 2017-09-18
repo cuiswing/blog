@@ -5,7 +5,7 @@ import com.cui.blog.biz.errormessage.BlogErrorMessageFactory;
 import com.cui.blog.biz.exception.BlogException;
 import com.cui.blog.biz.mappper.AdminAccountMapper;
 import com.cui.blog.biz.service.AdminAccountService;
-import com.cui.blog.dal.mapper.AdminAccountDAO;
+import com.cui.blog.dal.dao.AdminAccountDAO;
 import com.cui.blog.dal.po.AdminAccountDO;
 import com.cui.common.utils.MD5Util;
 import org.springframework.stereotype.Service;

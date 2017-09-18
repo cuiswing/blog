@@ -34,6 +34,16 @@ public class BlogErrorMessageFactory extends AbstractErrorMessageFactory {
     }
 
     /**
+     * 类别名称重复
+     *
+     * @param categoryName 类别名称
+     * @return 错误详情
+     */
+    public ErrorMessage categoryNameRepeatError(String categoryName) {
+        return createError("CE01205", categoryName);
+    }
+
+    /**
      * ErrorMessageFactoryHolder instance keeper
      * 这是把单例模式用到了极致，防止对象过早实例化却不使用前占用内存
      */
