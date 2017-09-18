@@ -8,7 +8,7 @@ $(document).ready(function () {
         data: {
             infos: {},
             category: {
-                "id":0,
+                "id": 0,
                 "categoryName": ""
             }
         },
@@ -24,7 +24,7 @@ $(document).ready(function () {
                     url: __ctx + "/admin/category/list",
                     success: function (result) {
                         if (result.success) {
-                            category_list.infos = result.data
+                            Vue.set(category_list.infos, 'data', result.data);
                         } else {
                             toastr.error(result.message, "加载失败", {
                                 timeOut: 2000,
@@ -40,8 +40,9 @@ $(document).ready(function () {
                     }
                 })
             },
-            edit: function (id) {
+            edit: function (id, categoryName) {
                 this.category.id = id;
+                this.category.categoryName = categoryName;
                 $("#formModal").modal({
                     show: true,
                     keyboard: true,
@@ -62,8 +63,9 @@ $(document).ready(function () {
                                 positionClass: "toast-top-center"
                             })
                             category_list.loadGridData()
+                            $("#formModal").modal('hide')
                         } else {
-                            toastr.error(result.message, "保存失败", {
+                            toastr.error(result.errorMessage, "保存失败", {
                                 timeOut: 2000,
                                 positionClass: "toast-top-center"
                             })

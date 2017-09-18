@@ -97,14 +97,14 @@
                                 <input type="hidden" v-bind:value="categoryItem.id"/>
                                 <td>
                                     <a v-on:click.prevent="viewArticle(categoryItem.id)"
-                                       v-text="category.categoryName"></a>
+                                       v-text="categoryItem.categoryName"></a>
                                 </td>
-                                <td v-text="categoryItem.categoryCount"></td>
+                                <td v-text="categoryItem.articleCount"></td>
                                 <td>
                                     <div>
                                         <button class="btn green-haze btn-circle"
-                                                v-on:click.prevent="edit(categoryItem.id)">
-                                            <i class="fa fa-check"></i>修改
+                                                v-on:click.prevent="edit(categoryItem.id,categoryItem.categoryName)">
+                                            <i class="fa fa-edit"></i>修改
                                         </button>
                                     </div>
                                 </td>
