@@ -42,7 +42,11 @@ public class ArticleCategoryServiceImpl implements ArticleCategoryService {
      * @return 保存后的类别对象
      */
     @Override
-    public ArticleCategoryDO save(ArticleCategoryDTO articleCategoryDTO) {
+    public ArticleCategoryDO save(ArticleCategoryDTO articleCategoryDTO) throws BlogException {
+        int count = articleCategoryDAO.getCountByName(articleCategoryDTO.getCategoryName());
+        if (count > 0) {
+            throw new BlogException(errorMessageFactory.categoryNameRepeatError(articleCategoryDTO.getCategoryName()));
+        }
         ArticleCategoryDO articleCategoryDO = new ArticleCategoryDO();
         articleCategoryDO.setCategoryName(articleCategoryDTO.getCategoryName());
         articleCategoryDO.setArticleCount(0);

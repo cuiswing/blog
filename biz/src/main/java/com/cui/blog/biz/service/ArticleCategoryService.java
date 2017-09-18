@@ -25,7 +25,7 @@ public interface ArticleCategoryService {
      * @param articleCategoryDTO 类别
      * @return 保存后的类别对象
      */
-    ArticleCategoryDO save(ArticleCategoryDTO articleCategoryDTO);
+    ArticleCategoryDO save(ArticleCategoryDTO articleCategoryDTO) throws BlogException;
 
     /**
      * 更新类别

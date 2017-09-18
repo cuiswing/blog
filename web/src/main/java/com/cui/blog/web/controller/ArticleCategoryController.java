@@ -88,18 +88,18 @@ public class ArticleCategoryController {
         articleCategoryVO.setCreateUser(adminAccountDTO.getId());
         articleCategoryVO.setUpdateUser(adminAccountDTO.getId());
 
-        if (articleCategoryVO.getId() == 0) {
-            ArticleCategoryDO articleCategoryDO = articleCategoryService.save(ArticleCategoryMapper.articleCategoryVO2DTO(articleCategoryVO));
-            result.setData(articleCategoryDO);
-        } else {
-            try {
-                int updateRows = articleCategoryService.update(ArticleCategoryMapper.articleCategoryVO2DTO(articleCategoryVO));
-            } catch (BlogException e) {
-                LOGGER.error("<web><ArticleCategoryController><save><><>文章类别保存失败：", e);
-                result.setSuccess(false);
-                result.setErrorCode(e.getErrorCode());
-                result.setErrorMessage(e.getMessage());
+        try {
+            if (articleCategoryVO.getId() == 0) {
+                ArticleCategoryDO articleCategoryDO = articleCategoryService.save(ArticleCategoryMapper.articleCategoryVO2DTO(articleCategoryVO));
+                result.setData(articleCategoryDO);
+            } else {
+                articleCategoryService.update(ArticleCategoryMapper.articleCategoryVO2DTO(articleCategoryVO));
             }
+        } catch (BlogException e) {
+            LOGGER.error("<web><ArticleCategoryController><save><><>文章类别保存失败：", e);
+            result.setSuccess(false);
+            result.setErrorCode(e.getErrorCode());
+            result.setErrorMessage(e.getMessage());
         }
         return result;
     }

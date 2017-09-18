@@ -20,8 +20,8 @@ public class ArticleCategoryMapper {
         articleCategoryDTO.setId(articleCategoryVO.getId());
         articleCategoryDTO.setCreateUser(articleCategoryVO.getCreateUser());
         articleCategoryDTO.setUpdateUser(articleCategoryVO.getUpdateUser());
-        articleCategoryDTO.setCategoryName(articleCategoryVO.getCategoryName());
-        articleCategoryDTO.setArticleCount(articleCategoryVO.getCreateUser());
+        articleCategoryDTO.setCategoryName(articleCategoryVO.getCategoryName().trim());
+        articleCategoryDTO.setArticleCount(articleCategoryVO.getArticleCount());
         return articleCategoryDTO;
     }
 }
