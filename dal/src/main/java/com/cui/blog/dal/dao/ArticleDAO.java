@@ -1,8 +1,9 @@
-package com.cui.blog.dal.mapper;
+package com.cui.blog.dal.dao;
 
 import com.cui.blog.dal.po.ArticleDO;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Mapper接口：article
@@ -33,6 +34,14 @@ public interface ArticleDAO {
     int save(ArticleDO articleDO);
 
     /**
+     * 保存并返回自增主键id
+     *
+     * @param articleDO 文章DO
+     * @return 数据库影响行数
+     */
+    int saveAndReturnKey(ArticleDO articleDO);
+
+    /**
      * 更新
      *
      * @param articleDO 文章
@@ -47,4 +56,12 @@ public interface ArticleDAO {
      * @return 数据库影响行数
      */
     int delete(Integer id);
+
+    /**
+     * 获取同名标题的数量
+     *
+     * @param map 查询参数
+     * @return 数量
+     */
+    int getCountByTitle(Map map);
 }

@@ -3,17 +3,44 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- namespace：命名空间，用于隔离sql，namespace必须和Mapper接口类路径一致 -->
-<mapper namespace="com.cui.blog.dal.mapper.ArticleDAO">
+<mapper namespace="com.cui.blog.dal.dao.ArticleDAO">
+
+    <resultMap id="ArticleMap" type="com.cui.blog.dal.po.ArticleDO">
+        <id column="id" property="id" jdbcType="INTEGER" javaType="INTEGER"/>
+        <result column="enabled" property="enabled" jdbcType="INTEGER" javaType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="create_user" property="createUser" jdbcType="INTEGER" javaType="INTEGER"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result column="update_user" property="updateUser" jdbcType="INTEGER" javaType="INTEGER"/>
+        <result column="title" property="title" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="content" property="password" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="visit_count" property="visitCount" jdbcType="INTEGER" javaType="INTEGER"/>
+        <result column="comment_count" property="commentCount" jdbcType="INTEGER" javaType="INTEGER"/>
+        <result column="article_category_id" property="articleCategoryId" jdbcType="INTEGER" javaType="INTEGER"/>
+        <result column="category_name" property="categoryName" jdbcType="VARCHAR" javaType="java.lang.String"/>
+    </resultMap>
 
     <!--根据id获取数据-->
-    <select id="getById" parameterType="int" resultType="com.cui.blog.dal.po.ArticleDO">
+    <select id="getById" parameterType="int" resultMap="ArticleMap">
         SELECT * FROM `article` WHERE enabled=1 AND id = #{id}
     </select>
 
     <!-- 如果返回多个结果，mybatis会自动把返回的结果放在list容器中 -->
-    <!-- resultType的配置和返回一个结果的配置一样 -->
-    <select id="listAll" parameterType="int" resultType="com.cui.blog.dal.po.ArticleDO">
+    <!-- resultMap的配置和返回一个结果的配置一样 -->
+    <select id="listAll" parameterType="int" resultMap="ArticleMap">
         SELECT * FROM `article`  WHERE enabled=1
+    </select>
+
+    <select id="pageQuery" parameterType="int" resultMap="ArticleMap">
+        SELECT * FROM `article`  WHERE enabled=1 ORDER BY id limit #{startIndex},#{pageSize}
+    </select>
+
+    <!--根据标题获取同名的数量-->
+    <select id="getCountByTitle" parameterType="java.util.Map" resultType="int">
+        SELECT count(*) FROM `article_category` WHERE enabled=1 AND category_name = #{categoryName}
+        <if test="id!=null and id >0">
+            id = #{id}
+        </if>
     </select>
 
     <!-- 保存 -->
