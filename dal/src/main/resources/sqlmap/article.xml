@@ -45,9 +45,9 @@
 
     <!-- 保存 -->
     <insert id="save" parameterType="com.cui.blog.dal.po.ArticleDO">
-        INSERT INTO `article`(title,content,article_category_id,category_name)
+        INSERT INTO `article`(create_user,update_user,title,content,article_category_id,category_name)
         VALUES
-        (#{title},#{content},#{articleCategoryId},#{categoryName})
+        (#{createUser},#{updateUser},#{title},#{content},#{articleCategoryId},#{categoryName})
     </insert>
 
     <!-- 保存并返回自增主键id -->
@@ -55,9 +55,9 @@
         <selectKey keyColumn="id" keyProperty="id" order="AFTER" resultType="int">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        INSERT INTO `article`(title,content,article_category_id,category_name)
+        INSERT INTO `article`(create_user,update_user,title,content,article_category_id,category_name)
         VALUES
-        (#{title},#{content},#{articleCategoryId},#{categoryName})
+        (#{createUser},#{updateUser},#{title},#{content},#{articleCategoryId},#{categoryName})
     </insert>
 
     <!-- 更新 -->
