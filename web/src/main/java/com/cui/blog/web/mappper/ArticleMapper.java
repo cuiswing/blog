@@ -23,7 +23,7 @@ public class ArticleMapper {
         articleDTO.setTitle(articleVO.getTitle().trim());
         articleDTO.setContent(articleVO.getContent());
         articleDTO.setArticleCategoryId(articleVO.getArticleCategoryId());
-        articleDTO.setCategoryName(articleVO.getCategoryName());
+        articleDTO.setCategoryName(articleVO.getCategoryName().trim());
         articleDTO.setVisitCount(articleVO.getVisitCount());
         articleDTO.setCommentCount(articleVO.getCommentCount());
         return articleDTO;

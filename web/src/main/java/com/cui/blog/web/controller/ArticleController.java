@@ -88,7 +88,7 @@ public class ArticleController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
-    public Result save(ArticleVO articleVO, HttpSession session) {
+    public Result save(@RequestBody ArticleVO articleVO, HttpSession session) {
         Result<ArticleDO> result = new Result<>();
 
         AdminAccountDTO adminAccountDTO = (AdminAccountDTO) session.getAttribute("user");
