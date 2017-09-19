@@ -17,6 +17,9 @@ public class ArticleMapper {
      * @return 文章DTO
      */
     public static ArticleDTO articleDO2DTO(ArticleDO articleDO) {
+        if (articleDO == null) {
+            return null;
+        }
         ArticleDTO articleDTO = new ArticleDTO();
         articleDTO.setId(articleDO.getId());
         articleDTO.setArticleCategoryId(articleDO.getArticleCategoryId());
