@@ -13,7 +13,7 @@
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
         <result column="update_user" property="updateUser" jdbcType="INTEGER" javaType="INTEGER"/>
         <result column="title" property="title" jdbcType="VARCHAR" javaType="java.lang.String"/>
-        <result column="content" property="password" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        <result column="content" property="content" jdbcType="VARCHAR" javaType="java.lang.String"/>
         <result column="visit_count" property="visitCount" jdbcType="INTEGER" javaType="INTEGER"/>
         <result column="comment_count" property="commentCount" jdbcType="INTEGER" javaType="INTEGER"/>
         <result column="article_category_id" property="articleCategoryId" jdbcType="INTEGER" javaType="INTEGER"/>
