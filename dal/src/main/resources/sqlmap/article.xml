@@ -37,7 +37,7 @@
 
     <!--根据标题获取同名的数量-->
     <select id="getCountByTitle" parameterType="java.util.Map" resultType="int">
-        SELECT count(*) FROM `article_category` WHERE enabled=1 AND category_name = #{categoryName}
+        SELECT count(*) FROM `article` WHERE enabled=1 AND title = #{title}
         <if test="id!=null and id >0">
             id = #{id}
         </if>
