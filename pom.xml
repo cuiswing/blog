@@ -32,6 +32,7 @@
         <velocity.tools.version>2.0</velocity.tools.version>
         <jackson.version>2.9.1</jackson.version>
         <pagehelper.version>5.1.1</pagehelper.version>
+        <fastjson.version>1.2.38</fastjson.version>
 
     </properties>
 
@@ -181,7 +182,11 @@
                 <version>${jackson.version}</version>
             </dependency>
 
-
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
         </dependencies>
 
     </dependencyManagement>

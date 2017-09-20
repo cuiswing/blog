@@ -1,6 +1,7 @@
 package com.cui.blog.web.filter;
 
-import org.springframework.http.HttpStatus;
+import com.alibaba.fastjson.JSON;
+import com.cui.blog.web.form.Result;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -47,7 +48,13 @@ public class SessionFilter extends OncePerRequestFilter {
             if (user == null) {
                 boolean isAjaxRequest = isAjaxRequest(request);
                 if (isAjaxRequest) {
-                    response.sendError(HttpStatus.UNAUTHORIZED.value(), "您已经太长时间没有操作,请刷新页面");
+                    response.setContentType("application/json;charset=utf-8");
+                    Result result = new Result();
+                    result.setSuccess(false);
+                    result.setErrorCode("CE01101");
+                    result.setErrorMessage("您已经太长时间没有操作,请刷新页面");
+                    response.getWriter().print(JSON.toJSONString(result));
+//                    response.sendError(HttpStatus.UNAUTHORIZED.value(), "您已经太长时间没有操作,请刷新页面");
                     return;
                 }
                 response.sendRedirect("/blog/admin/account/login");

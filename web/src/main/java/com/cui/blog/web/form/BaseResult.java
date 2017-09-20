@@ -29,6 +29,15 @@ public class BaseResult implements Serializable {
     }
 
     /**
+     * 构造函数设置执行结果是否成功
+     *
+     * @param success 服务是否执行成功
+     */
+    public BaseResult(boolean success) {
+        this.success = success;
+    }
+
+    /**
      * 带参数构造函数
      *
      * @param errorCode    错误码

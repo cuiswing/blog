@@ -11,6 +11,13 @@ public class Result<T> extends BaseResult {
      */
     private T data;
 
+    /**
+     * 默认构造函数，设置服务执行结果为成功
+     */
+    public Result() {
+        super(true);
+    }
+
     public T getData() {
         return data;
     }
