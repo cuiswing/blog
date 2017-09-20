@@ -99,9 +99,7 @@ $(document).ready(function () {
                             positionClass: "toast-top-center"
                         });
                     }
-
                 });
-                console.log(article_edit.articleVO)
             }
         }
     });
@@ -123,6 +121,60 @@ $(document).ready(function () {
     var WEditor = window.wangEditor;
     var weditor = new WEditor('#weditor');
     weditor.customConfig.zIndex = 100;
+    weditor.customConfig.uploadImgServer = __ctx + '/admin/image/upload';  // 上传图片到服务器
+    weditor.customConfig.uploadImgMaxSize = 5 * 1024 * 1024;  // 将图片大小限制为 5M
+    // 限制一次最多上传 5 张图片
+    weditor.customConfig.uploadImgMaxLength = 5;
+    weditor.customConfig.uploadImgTimeout = 30000;
+    weditor.customConfig.uploadFileName = 'image';
+    weditor.customConfig.uploadImgHooks = {
+        // before: function (xhr, editor, files) {
+        //     // 图片上传之前触发
+        //     // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，files 是选择的图片文件
+        //
+        //     // 如果返回的结果是 {prevent: true, msg: 'xxxx'} 则表示用户放弃上传
+        //     // return {
+        //     //     prevent: true,
+        //     //     msg: '放弃上传'
+        //     // }
+        // },
+        // success: function (xhr, editor, result) {
+        //     // 图片上传并返回结果，图片插入成功之后触发
+        //     // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，result 是服务器端返回的结果
+        // },
+        // fail: function (xhr, editor, result) {
+        //     // 图片上传并返回结果，但图片插入错误时触发
+        //     // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，result 是服务器端返回的结果
+        // },
+        // error: function (xhr, editor) {
+        //     // 图片上传出错时触发
+        //     // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象
+        // },
+        // timeout: function (xhr, editor) {
+        //     // 图片上传超时时触发
+        //     // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象
+        // },
+
+        // 如果服务器端返回的不是 {errno:0, data: [...]} 这种格式，可使用该配置
+        // （但是，服务器端返回的必须是一个 JSON 格式字符串！！！否则会报错）
+        customInsert: function (insertImg, result, editor) {
+            // 图片上传并返回结果，自定义插入图片的事件（而不是编辑器自动插入图片！！！）
+            // insertImg 是插入图片的函数，editor 是编辑器对象，result 是服务器端返回的结果
+            // result 必须是一个 JSON 格式字符串！！！否则报错
+
+            if (result.success && result.data) {
+                var imageUrls = result.data;
+                for (var i = 0; i < imageUrls.length; i++) {
+                    insertImg(imageUrls[i]);
+                }
+            } else {
+                toastr.error(result, "上传图片失败", {
+                    timeOut: 2000,
+                    positionClass: "toast-top-center"
+                });
+            }
+        }
+    };
     weditor.create();
 
 
