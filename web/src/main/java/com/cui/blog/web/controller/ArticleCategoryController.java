@@ -71,7 +71,7 @@ public class ArticleCategoryController {
     /**
      * 新增类别
      *
-     * @return 查询结果集
+     * @return 保存结果
      */
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody

@@ -26,7 +26,7 @@ $(document).ready(function () {
                         if (result.success) {
                             Vue.set(category_list.infos, 'data', result.data);
                         } else {
-                            toastr.error(result.message, "加载失败", {
+                            toastr.error(result.errorMessage, "加载失败", {
                                 timeOut: 2000,
                                 positionClass: "toast-top-center"
                             })

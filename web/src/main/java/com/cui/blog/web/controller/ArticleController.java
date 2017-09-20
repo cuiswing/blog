@@ -86,6 +86,13 @@ public class ArticleController {
         return result;
     }
 
+    /**
+     * 保存文章
+     *
+     * @param articleVO 文章VO
+     * @param session   会话信息
+     * @return 响应数据
+     */
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
     public Result save(@RequestBody ArticleVO articleVO, HttpSession session) {

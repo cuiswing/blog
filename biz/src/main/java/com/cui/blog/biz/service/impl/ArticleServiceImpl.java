@@ -85,8 +85,8 @@ public class ArticleServiceImpl implements ArticleService {
         articleDO.setUpdateUser(articleDTO.getUpdateUser());
         articleDO.setTitle(articleDTO.getTitle());
         articleDO.setContent(articleDTO.getContent());
-        articleDO.setVisitCount(articleDTO.getVisitCount());
-        articleDO.setCommentCount(articleDTO.getCommentCount());
+        articleDO.setVisitCount(0);
+        articleDO.setCommentCount(0);
         articleDO.setArticleCategoryId(articleDTO.getArticleCategoryId());
         articleDO.setCategoryName(articleDTO.getCategoryName());
         articleDAO.saveAndReturnKey(articleDO);
