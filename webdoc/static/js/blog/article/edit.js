@@ -8,11 +8,11 @@ $(document).ready(function () {
         data: {
             articleId: articleId,
             articleVO: {},
-            categoryList: {}
+            categoryList: categoryList
         },
         mounted: function () {
             this.$nextTick(function () {
-                this.loadAllCategory();
+                // this.loadAllCategory();
                 this.loadData();
             })
         },
@@ -25,9 +25,9 @@ $(document).ready(function () {
                         success: function (result) {
                             if (result.success) {
                                 article_edit.articleVO = result.data;
-                                window.setTimeout(function () {
-                                    $("#categorySelect").val(article_edit.articleVO.articleCategoryId).trigger('change')
-                                }, 900);
+                                // window.setTimeout(function () {
+                                $("#categorySelect").val(article_edit.articleVO.articleCategoryId).trigger('change')
+                                // }, 900);
                                 weditor.txt.html(article_edit.articleVO.content);
                             } else {
                                 toastr.error(result, "加载文章失败", {

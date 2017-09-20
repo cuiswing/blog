@@ -1,9 +1,12 @@
 package com.cui.blog.web.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.cui.blog.biz.dto.AdminAccountDTO;
 import com.cui.blog.biz.dto.ArticleDTO;
 import com.cui.blog.biz.exception.BlogException;
+import com.cui.blog.biz.service.ArticleCategoryService;
 import com.cui.blog.biz.service.ArticleService;
+import com.cui.blog.dal.po.ArticleCategoryDO;
 import com.cui.blog.dal.po.ArticleDO;
 import com.cui.blog.web.form.PageRequest;
 import com.cui.blog.web.form.Result;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * 文章处理前端控制器
@@ -30,6 +34,8 @@ public class ArticleController {
 
     @Resource
     private ArticleService articleService;
+    @Resource
+    private ArticleCategoryService articleCategoryService;
 
 
     /**
@@ -68,6 +74,8 @@ public class ArticleController {
     @RequestMapping(value = "/edit", method = {RequestMethod.GET})
     public String editPage(@RequestParam(value = "id", required = false) Integer id, Model model) {
         model.addAttribute("articleId", id);
+        List<ArticleCategoryDO> articleCategoryDOS = articleCategoryService.listAll();
+        model.addAttribute("categoryList", JSON.toJSON(articleCategoryDOS));
         return "article/edit";
     }
 
