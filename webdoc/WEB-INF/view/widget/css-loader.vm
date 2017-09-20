@@ -6,6 +6,7 @@
 <link href="${rc.contextPath}/js/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css">
 <!-- END GLOBAL MANDATORY STYLES -->
 <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
+<link rel="stylesheet" type="text/css" href="${rc.contextPath}/js/plugins/select2/select2.css"/>
 <link href="${rc.contextPath}/js/plugins/jqvmap/jqvmap/jqvmap.css" rel="stylesheet" type="text/css">
 <link href="${rc.contextPath}/js/plugins/morris/morris.css" rel="stylesheet" type="text/css">
 <!-- END PAGE LEVEL PLUGIN STYLES -->

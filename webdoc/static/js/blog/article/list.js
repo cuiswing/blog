@@ -4,13 +4,15 @@
 
 $(document).ready(function () {
     var article_list = new Vue({
-        el: "#article",
+        el: "#articleList",
         data: {
             params: {},
             infos: {}
         },
-        ready: function () {
-            this.loadGridData(this.params);
+        mounted: function () {
+            this.$nextTick(function () {
+                this.loadGridData(this.params);
+            })
         },
         methods: {
             loadGridData: function (param) {
@@ -22,14 +24,14 @@ $(document).ready(function () {
                         if (result.success) {
                             article_list.infos = result.data
                         } else {
-                            toastr.error(result.message, "加载失败", {
+                            toastr.error(result.errorMessage, "加载文章失败", {
                                 timeOut: 2000,
                                 positionClass: "toast-top-center"
                             })
                         }
                     },
                     error: function (result) {
-                        toastr.error(result.message, "加载失败", {
+                        toastr.error(result, "加载文章失败", {
                             timeOut: 2000,
                             positionClass: "toast-top-center"
                         });
