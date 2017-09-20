@@ -39,7 +39,7 @@
     <select id="getCountByTitle" parameterType="java.util.Map" resultType="int">
         SELECT count(*) FROM `article` WHERE enabled=1 AND title = #{title}
         <if test="id!=null and id >0">
-            id = #{id}
+           AND id != #{id}
         </if>
     </select>
 
