@@ -1,0 +1,88 @@
+
+<div class="row" id="article">
+    <div class="col-md-12">
+        <!-- BEGIN VALIDATION STATES-->
+        <div class="portlet light">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-cogs font-green-sharp"></i>
+                    <span class="caption-subject font-green-sharp bold uppercase">
+                        #if($articleId==0)
+                            添加文章
+                        #elseif($articleId>0)
+                            修改文章
+                        #end
+                    </span>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <!-- BEGIN FORM-->
+                <form action="javascript:;" id="form_sample_3" class="form-horizontal">
+                    <div class="form-body">
+                    ##                        <h3 class="form-section">Advance validation.
+                    ##                            <small>Custom radio buttons, checkboxes and Select2 dropdowns</small>
+                    ##                        </h3>
+                        <div class="alert alert-danger display-hide">
+                            <button class="close" data-close="alert"></button>
+                            提交失败！请检查。
+                        </div>
+                        <div class="alert alert-success display-hide">
+                            <button class="close" data-close="alert"></button>
+                            验证通过!
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">标题
+                                <span class="required">* </span>
+                            </label>
+                            <div class="col-md-4">
+                                <input type="text" name="title" data-required="1" class="form-control"
+                                       v-model="articleVO.title"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">分类
+                                <span class="required">* </span>
+                            </label>
+                            <div class="col-md-4">
+                                <select class="form-control select2me" name="options2" id="categorySelect"
+                                        v-model="articleVO.articleCategoryId">
+                                    <option></option>#*必须要有一个空的<option>，allowClear: true设置的x才会出现*#
+                                    <option v-bind:value="categoryItem.id" v-for="categoryItem in categoryList">
+                                        {{categoryItem.categoryName}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">内容
+                                <span class="required">* </span>
+                            </label>
+                            <div class="col-md-10">
+                                <div id="weditor">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-offset-5 col-md-5">
+                                <button type="submit" class="btn green" v-on:click="save">保存</button>
+                                <button type="button" class="btn default">取消</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- END FORM-->
+            </div>
+        </div>
+        <!-- END VALIDATION STATES-->
+    </div>
+</div>
+
+<script>
+    var articleId = $!articleId;
+</script>
+<script type="text/javascript" src="${rc.contextPath}/js/plugins/select2/select2.min.js"></script>
+<script type="text/javascript" src="${rc.contextPath}/js/plugins/select2/select2_locale_zh-CN.js"></script>
+<script src="${rc.contextPath}/js/plugins/wangEditor-3.0.9/wangEditor.js"></script>
+<script src="${rc.contextPath}/js/blog/article/edit.js"></script>
