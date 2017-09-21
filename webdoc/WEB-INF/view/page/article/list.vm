@@ -67,9 +67,9 @@
                                 <td>
                                     <a v-on:click.prevent="viewArticle(article.id)" v-text="article.title"></a>
                                 </td>
-                                <td>{{article.visitCount}}</td>
-                                <td>{{article.commentCount}}</td>
-                                <td>{{article.createTime | formatDate('YYYY-MM-DD HH:mm:ss')}}</td>
+                                <td v-cloak>{{article.visitCount}}</td>
+                                <td v-cloak>{{article.commentCount}}</td>
+                                <td v-cloak>{{article.createTime | formatDate('YYYY-MM-DD HH:mm:ss')}}</td>
                                 <td>
                                     <div>
                                         <a v-bind:href="'${rc.contextPath}/admin/article/edit?id='+article.id"

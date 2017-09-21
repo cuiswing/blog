@@ -22,3 +22,9 @@
 <link href="${rc.contextPath}/css/custom.css" rel="stylesheet" type="text/css">
 <!-- END THEME STYLES -->
 <link href="${rc.contextPath}/js/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" type="text/css">
+
+<style>
+    [v-cloak] {
+        display: none;
+    }
+</style>
