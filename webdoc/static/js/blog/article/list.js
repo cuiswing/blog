@@ -14,6 +14,13 @@ $(document).ready(function () {
                 this.loadGridData(this.params);
             })
         },
+        filters: {
+            formatDate: function (value, format) {
+                if (value) {
+                    return moment(value).format(format);
+                }
+            }
+        },
         methods: {
             loadGridData: function (param) {
                 $.ajax({

@@ -22,6 +22,10 @@ public class ArticleMapper {
         }
         ArticleDTO articleDTO = new ArticleDTO();
         articleDTO.setId(articleDO.getId());
+        articleDTO.setCreateTime(articleDO.getCreateTime());
+        articleDTO.setCreateUser(articleDO.getCreateUser());
+        articleDTO.setUpdateTime(articleDO.getUpdateTime());
+        articleDTO.setUpdateUser(articleDO.getUpdateUser());
         articleDTO.setArticleCategoryId(articleDO.getArticleCategoryId());
         articleDTO.setCategoryName(articleDO.getCategoryName());
         articleDTO.setTitle(articleDO.getTitle());

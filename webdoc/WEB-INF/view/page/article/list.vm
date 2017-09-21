@@ -44,7 +44,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="btn-group">
-                                        <a href="${rc.contextPath}/admin/article/edit?id=0" class="btn green" target="_blank">
+                                        <a href="${rc.contextPath}/admin/article/edit?id=0" class="btn green"
+                                           target="_blank">
                                             写新文章<i class="fa fa-plus"></i></a>
                                     </div>
                                 </div>
@@ -66,12 +67,13 @@
                                 <td>
                                     <a v-on:click.prevent="viewArticle(article.id)" v-text="article.title"></a>
                                 </td>
-                                <td v-text="article.visitCount"></td>
-                                <td v-text="article.commentCount"></td>
-                                <td v-text="article.createTime"></td>
+                                <td>{{article.visitCount}}</td>
+                                <td>{{article.commentCount}}</td>
+                                <td>{{article.createTime | formatDate('YYYY-MM-DD HH:mm:ss')}}</td>
                                 <td>
                                     <div>
-                                        <a v-bind:href="'${rc.contextPath}/admin/article/edit?id='+article.id" target="_blank">修改</a>
+                                        <a v-bind:href="'${rc.contextPath}/admin/article/edit?id='+article.id"
+                                           target="_blank">修改</a>
                                         <a v-bind:href="'${rc.contextPath}/admin/article/delete/'+article.id">删除</a>
                                     </div>
                                 </td>
