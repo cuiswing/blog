@@ -28,7 +28,6 @@ import java.util.List;
  * Created by cuishixiang on 2017-09-07.
  */
 @Controller
-@RequestMapping("/admin/article")
 public class ArticleController {
     private static final Logger LOGGER = LoggerFactory.getLogger(ArticleController.class);
 
@@ -43,7 +42,7 @@ public class ArticleController {
      *
      * @return 文章列表页面
      */
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/article", method = RequestMethod.GET)
     public String listPage() {
         return "article/list";
     }
@@ -54,7 +53,7 @@ public class ArticleController {
      * @param pageRequest 分页查询请求
      * @return 查询结果集
      */
-    @RequestMapping(value = "/list", method = RequestMethod.POST)
+    @RequestMapping(value = "/article/list", method = RequestMethod.POST)
     @ResponseBody
     public Result list(PageRequest pageRequest) {
         Result<PageList<ArticleDTO>> result = new Result<>();
@@ -71,7 +70,7 @@ public class ArticleController {
      * @param model 属性模型对象
      * @return 文章编辑页面
      */
-    @RequestMapping(value = "/edit", method = {RequestMethod.GET})
+    @RequestMapping(value = "/admin/article/edit", method = {RequestMethod.GET})
     public String editPage(@RequestParam(value = "id", required = false) Integer id, Model model) {
         model.addAttribute("articleId", id);
         List<ArticleCategoryDO> articleCategoryDOS = articleCategoryService.listAll();
@@ -85,7 +84,7 @@ public class ArticleController {
      * @param id 文章id
      * @return 响应数据
      */
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/article/{id}", method = RequestMethod.GET)
     @ResponseBody
     public Result getById(@PathVariable Integer id) {
         Result<ArticleVO> result = new Result<>();
@@ -101,7 +100,7 @@ public class ArticleController {
      * @param session   会话信息
      * @return 响应数据
      */
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/article/save", method = RequestMethod.POST)
     @ResponseBody
     public Result save(@RequestBody ArticleVO articleVO, HttpSession session) {
         Result<ArticleDO> result = new Result<>();
