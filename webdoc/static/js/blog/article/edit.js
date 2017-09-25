@@ -21,7 +21,7 @@ $(document).ready(function () {
                 if (articleId > 0) {
                     $.ajax({
                         type: "GET",
-                        url: __ctx + "/admin/article/" + articleId,
+                        url: __ctx + "/article/" + articleId,
                         success: function (result) {
                             if (result.success) {
                                 article_edit.articleVO = result.data;

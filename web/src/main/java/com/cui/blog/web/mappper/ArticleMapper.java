@@ -42,7 +42,9 @@ public class ArticleMapper {
         ArticleVO articleVO = new ArticleVO();
         articleVO.setId(articleDTO.getId());
         articleVO.setCreateUser(articleDTO.getCreateUser());
+        articleVO.setCreateTime(articleDTO.getCreateTime());
         articleVO.setUpdateUser(articleDTO.getUpdateUser());
+        articleVO.setUpdateTime(articleDTO.getUpdateTime());
         articleVO.setTitle(articleDTO.getTitle());
         articleVO.setContent(articleDTO.getContent());
         articleVO.setArticleCategoryId(articleDTO.getArticleCategoryId());
