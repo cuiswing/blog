@@ -29,6 +29,15 @@ public interface ArticleService {
     PageList<ArticleDTO> pageQuery(int pageNo, int pageSize);
 
     /**
+     * 分页查询文章-倒序排列
+     *
+     * @param pageNo   当前页
+     * @param pageSize 每页条目数
+     * @return 分页数据集
+     */
+    PageList<ArticleDTO> pageQueryDesc(int pageNo, int pageSize);
+
+    /**
      * 保存文章
      *
      * @param articleDTO 文章DTO

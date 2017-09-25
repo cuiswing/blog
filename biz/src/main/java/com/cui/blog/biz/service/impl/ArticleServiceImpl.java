@@ -65,6 +65,26 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     /**
+     * 分页查询文章-倒序排列
+     *
+     * @param pageNo   当前页
+     * @param pageSize 每页条目数
+     * @return 分页数据集
+     */
+    @Override
+    public PageList<ArticleDTO> pageQueryDesc(int pageNo, int pageSize) {
+        List<ArticleDTO> articleDTOS = new ArrayList<>();
+        PageInfo<ArticleDO> pageInfo = PageHelper.startPage(pageNo, pageSize).doSelectPageInfo(() -> articleDAO.listAllDesc());
+        if (pageInfo.getList() != null) {
+            pageInfo.getList().forEach(articleDO -> {
+                articleDTOS.add(ArticleMapper.articleDO2DTO(articleDO));
+            });
+            return new PageList<>(articleDTOS, (int) pageInfo.getTotal(), pageNo, pageSize);
+        }
+        return null;
+    }
+
+    /**
      * 保存文章
      *
      * @param articleDTO 文章DTO

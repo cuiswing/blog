@@ -26,6 +26,13 @@ public interface ArticleDAO {
     List<ArticleDO> listAll();
 
     /**
+     * 获取所有文章信息-倒序排列
+     *
+     * @return 多条文章信息
+     */
+    List<ArticleDO> listAllDesc();
+
+    /**
      * 保存
      *
      * @param articleDO 文章

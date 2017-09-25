@@ -53,7 +53,7 @@ public class ArticleController {
      * @param pageRequest 分页查询请求
      * @return 查询结果集
      */
-    @RequestMapping(value = "/article/list", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/article/list", method = RequestMethod.POST)
     @ResponseBody
     public Result list(PageRequest pageRequest) {
         Result<PageList<ArticleDTO>> result = new Result<>();
@@ -62,6 +62,20 @@ public class ArticleController {
         return result;
     }
 
+    /**
+     * 分页查询文章-获取最新的
+     *
+     * @param pageRequest 分页查询请求
+     * @return 查询结果集
+     */
+    @RequestMapping(value = "/article/listNew", method = RequestMethod.POST)
+    @ResponseBody
+    public Result listNew(PageRequest pageRequest) {
+        Result<PageList<ArticleDTO>> result = new Result<>();
+        PageList<ArticleDTO> pageList = articleService.pageQueryDesc(pageRequest.getPageNo(), pageRequest.getPageSize());
+        result.setData(pageList);
+        return result;
+    }
 
     /**
      * 获取编辑页面地址
