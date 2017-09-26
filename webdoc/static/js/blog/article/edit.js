@@ -109,12 +109,14 @@ $(document).ready(function () {
         language: "zh-CN",
         allowClear: true
     }).on("change", function (e) {
-        if (!e.added) {
-            Vue.set(article_edit.articleVO, "articleCategoryId", "");
-            Vue.set(article_edit.articleVO, "categoryName", "");
-        } else if (e.added.id) {
+        if (e.added) {
             Vue.set(article_edit.articleVO, "articleCategoryId", e.added.id);
             Vue.set(article_edit.articleVO, "categoryName", e.added.text.trim());
+        } else if (e.removed && !e.added) {
+            //如果是清除选中项时才触发，因为在首次加载时使用了trigger触发选中事件，但是获取到的e没有added和removed属性
+            // ╮(╯▽╰)╭哎，暂时只能先这么搞了，太恶心了，一点都不优雅，终于自己也用上这样的词语来表达了
+            Vue.set(article_edit.articleVO, "articleCategoryId", "");
+            Vue.set(article_edit.articleVO, "categoryName", "");
         }
     });
 
