@@ -13,6 +13,8 @@
     <context:component-scan base-package="com.cui.blog.web.controller"/>
     <context:component-scan base-package="com.cui.blog.biz.service.impl"/>
 
+    <context:property-placeholder location="classpath:blog.properties"/>
+
     <!-- 配置静态资源，直接映射到对应的文件夹，不被DispatcherServlet处理 -->
     <mvc:annotation-driven/>
     <mvc:resources mapping="/css/**" location="/static/css/"/>

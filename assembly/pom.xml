@@ -20,6 +20,25 @@
         <assembly.name>blog</assembly.name>
     </properties>
 
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <build>
+                <filters>
+                    <filter>../conf/filter/blog.properties.dev</filter>
+                </filters>
+            </build>
+        </profile>
+        <profile>
+            <id>tencent</id>
+            <build>
+                <filters>
+                    <filter>../conf/filter/blog.properties.tencent</filter>
+                </filters>
+            </build>
+        </profile>
+    </profiles>
+
     <build>
         <resources>
             <resource>
@@ -52,10 +71,6 @@
             </resource>
         </resources>
 
-        <!--<filters>-->
-        <!--<filter>../conf/filter/dubbo.properties.default</filter>-->
-        <!--<filter>../conf/filter/application.properties.default</filter>-->
-        <!--</filters>-->
 
         <plugins>
             <!--这个插件要带上，不然无法复制资源文件-->

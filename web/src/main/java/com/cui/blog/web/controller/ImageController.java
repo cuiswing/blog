@@ -3,6 +3,7 @@ package com.cui.blog.web.controller;
 import com.cui.blog.web.form.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,7 +34,7 @@ public class ImageController {
      * 图片服务器域名
      * 可以在tomcat服务器的/conf/server.xml 文件的host节点中配置：<Context docBase="/image/blog" path="/image" reloadable="true"/>
      */
-    private static final String imageDomain = "http://localhost:9090/image/";
+    private static String imageDomain;
 
     /**
      * 上传图片后并返回图片地址
@@ -68,4 +69,13 @@ public class ImageController {
         return result;
     }
 
+    /**
+     * 通过配置文件注入值
+     *
+     * @param imageDomain 图片服务器域名地址
+     */
+    @Value("${imageDomain}")
+    public void setImageDomain(String imageDomain) {
+        ImageController.imageDomain = imageDomain;
+    }
 }
