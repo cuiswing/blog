@@ -1,13 +1,13 @@
-package com.cui.blog.dal.po;
+package com.cui.blog.biz.dto;
 
 import java.io.Serializable;
 import java.util.Date;
 
 /**
- * comment表
- * Created by cuishixiang on 2017-09-07.
+ * 文章评论DTO
+ * Created by cuishixiang on 2017-09-25.
  */
-public class CommentDO implements Serializable {
+public class CommentDTO implements Serializable {
     /**
      * 主键id
      */

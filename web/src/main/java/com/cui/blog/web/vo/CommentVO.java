@@ -1,13 +1,14 @@
-package com.cui.blog.dal.po;
+package com.cui.blog.web.vo;
 
 import java.io.Serializable;
 import java.util.Date;
 
 /**
- * comment表
- * Created by cuishixiang on 2017-09-07.
+ * 评论VO
+ * <p>
+ * Created by cuishixiang on 2017-09-25.
  */
-public class CommentDO implements Serializable {
+public class CommentVO implements Serializable {
     /**
      * 主键id
      */
@@ -52,10 +53,6 @@ public class CommentDO implements Serializable {
      * 评论内容
      */
     private String content;
-    /**
-     * ip地址
-     */
-    private String ip;
 
     public Integer getId() {
         return id;
@@ -143,13 +140,5 @@ public class CommentDO implements Serializable {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public String getIp() {
-        return ip;
-    }
-
-    public void setIp(String ip) {
-        this.ip = ip;
     }
 }

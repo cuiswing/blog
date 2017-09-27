@@ -1,4 +1,4 @@
-package com.cui.blog.dal.mapper;
+package com.cui.blog.dal.dao;
 
 import com.cui.blog.dal.po.CommentDO;
 
@@ -33,6 +33,14 @@ public interface CommentDAO {
      * @return 数据库影响行数
      */
     int save(CommentDO commentDO);
+
+    /**
+     * 保存评论并返回自增主键id
+     *
+     * @param commentDO 评论
+     * @return 数据库影响行数
+     */
+    int saveAndReturnKey(CommentDO commentDO);
 
     /**
      * 删除评论
