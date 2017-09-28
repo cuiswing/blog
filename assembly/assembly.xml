@@ -49,6 +49,7 @@
             <directory>${basedir}/../target/${assembly.name}.cui/config</directory>
             <includes>
                 <include>**/blog.properties</include>
+                <include>**/logback.xml</include>
             </includes>
             <outputDirectory>WEB-INF/classes</outputDirectory>
         </fileSet>
