@@ -54,6 +54,16 @@ public class BlogErrorMessageFactory extends AbstractErrorMessageFactory {
     }
 
     /**
+     * 文章不存在
+     *
+     * @param id 文章id
+     * @return 错误详情
+     */
+    public ErrorMessage articleNotExist(Integer id) {
+        return createError("CE01202", id);
+    }
+
+    /**
      * ErrorMessageFactoryHolder instance keeper
      * 这是把单例模式用到了极致，防止对象过早实例化却不使用前占用内存
      */

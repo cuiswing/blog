@@ -137,4 +137,21 @@ public class ArticleServiceImpl implements ArticleService {
         articleDO.setCategoryName(articleDTO.getCategoryName());
         return articleDAO.update(articleDO);
     }
+
+    /**
+     * 更新文章的访问量
+     *
+     * @param id    文章id
+     * @param count 增加的访问量
+     * @return 数据影响行数
+     */
+    @Override
+    public int updateViewCount(Integer id, Integer count) throws BlogException {
+        ArticleDO articleDO = articleDAO.getById(id);
+        if (articleDO == null) {
+            throw new BlogException(errorMessageFactory.articleNotExist(id));
+        }
+        articleDO.setVisitCount(articleDO.getVisitCount() + count);
+        return articleDAO.update(articleDO);
+    }
 }

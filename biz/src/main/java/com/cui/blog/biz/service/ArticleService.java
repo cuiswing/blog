@@ -52,4 +52,13 @@ public interface ArticleService {
      * @return 数据影响行数
      */
     int update(ArticleDTO articleDTO) throws BlogException;
+
+    /**
+     * 更新文章的访问量
+     *
+     * @param id    文章id
+     * @param count 增加的访问量
+     * @return 数据影响行数
+     */
+    int updateViewCount(Integer id, Integer count) throws BlogException;
 }

@@ -23,7 +23,7 @@ public class ArticleViewCountFilter extends OncePerRequestFilter {
     /**
      * 文章id-访问数量的记录
      */
-    private static Map<Integer, Integer> idAndCountMap = new ConcurrentHashMap<>();
+    public static Map<Integer, Integer> idAndCountMap = new ConcurrentHashMap<>();
 
     /**
      * 浏览量统计
