@@ -1,6 +1,7 @@
 package com.cui.blog.web.controller;
 
 import com.cui.blog.biz.dto.CommentDTO;
+import com.cui.blog.biz.exception.BlogException;
 import com.cui.blog.biz.service.CommentService;
 import com.cui.blog.dal.po.CommentDO;
 import com.cui.blog.web.form.Result;
@@ -42,8 +43,15 @@ public class CommentController {
 
         CommentDTO commentDTO = CommentMapper.commentVO2DTO(commentVO);
         commentDTO.setIp(IPUtils.getIpAddr(request));
-        CommentDO commentDO = commentService.save(commentDTO);
-        result.setData(commentDO);
+        try {
+            CommentDO commentDO = commentService.save(commentDTO);
+            result.setData(commentDO);
+        } catch (BlogException e) {
+            LOGGER.error("<web><CommentController><save><><>评论保存失败：", e);
+            result.setSuccess(false);
+            result.setErrorCode(e.getErrorCode());
+            result.setErrorMessage(e.getMessage());
+        }
         return result;
     }
 

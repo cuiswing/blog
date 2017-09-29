@@ -1,8 +1,12 @@
 package com.cui.blog.biz.service.impl;
 
 import com.cui.blog.biz.dto.CommentDTO;
+import com.cui.blog.biz.errormessage.BlogErrorMessageFactory;
+import com.cui.blog.biz.exception.BlogException;
 import com.cui.blog.biz.service.CommentService;
+import com.cui.blog.dal.dao.ArticleDAO;
 import com.cui.blog.dal.dao.CommentDAO;
+import com.cui.blog.dal.po.ArticleDO;
 import com.cui.blog.dal.po.CommentDO;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +19,15 @@ import java.util.List;
  */
 @Service
 public class CommentServiceImpl implements CommentService {
+    /**
+     * 错误工厂
+     */
+    private static final transient BlogErrorMessageFactory errorMessageFactory = BlogErrorMessageFactory.getInstance();
 
     @Resource
     private CommentDAO commentDAO;
+    @Resource
+    private ArticleDAO articleDAO;
 
     /**
      * 保存评论
@@ -26,7 +36,12 @@ public class CommentServiceImpl implements CommentService {
      * @return 评论DO
      */
     @Override
-    public CommentDO save(CommentDTO commentDTO) {
+    public CommentDO save(CommentDTO commentDTO) throws BlogException {
+        ArticleDO articleDO = articleDAO.getById(commentDTO.getArticleId());
+        if (articleDO == null) {
+            throw new BlogException(errorMessageFactory.articleNotExist(commentDTO.getArticleId()));
+        }
+
         CommentDO commentDO = new CommentDO();
         commentDO.setArticleId(commentDTO.getArticleId());
         commentDO.setUsername(commentDTO.getUsername());
@@ -35,6 +50,9 @@ public class CommentServiceImpl implements CommentService {
         commentDO.setContent(commentDTO.getContent());
         commentDO.setId(commentDTO.getId());
         commentDAO.saveAndReturnKey(commentDO);
+
+        articleDO.setCommentCount(articleDO.getCommentCount() + 1);
+        articleDAO.update(articleDO);
         return commentDO;
     }
 

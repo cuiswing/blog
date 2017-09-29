@@ -1,6 +1,7 @@
 package com.cui.blog.biz.service;
 
 import com.cui.blog.biz.dto.CommentDTO;
+import com.cui.blog.biz.exception.BlogException;
 import com.cui.blog.dal.po.CommentDO;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public interface CommentService {
      * @param commentDTO 评论DTO
      * @return 评论DO
      */
-    CommentDO save(CommentDTO commentDTO);
+    CommentDO save(CommentDTO commentDTO) throws BlogException;
 
     /**
      * 根据文章id获取所有的评论
