@@ -30,8 +30,10 @@ public class ArticleViewCountTask {
     public void writeArticleViewCountCache2DB() {
         for (Map.Entry<Integer, Integer> entry : ArticleViewCountFilter.idAndCountMap.entrySet()) {
             try {
-                articleService.updateViewCount(entry.getKey(), entry.getValue());
-                entry.setValue(0);
+                if (entry.getValue() > 0) {
+                    articleService.updateViewCount(entry.getKey(), entry.getValue());
+                    entry.setValue(0);
+                }
             } catch (BlogException e) {
                 LOGGER.error("<web><ArticleViewCountTask><writeArticleViewCountCache2DB><><>文章浏览量更新失败：", e);
             }
