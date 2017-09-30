@@ -98,7 +98,7 @@ public class ArticleController {
      * @param id 文章id
      * @return 响应数据
      */
-    @RequestMapping(value = "/article/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/article/view/{id}", method = RequestMethod.GET)
     @ResponseBody
     public Result getById(@PathVariable Integer id) {
         Result<ArticleVO> result = new Result<>();

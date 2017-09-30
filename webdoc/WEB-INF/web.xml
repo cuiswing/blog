@@ -51,7 +51,7 @@
     </filter>
     <filter-mapping>
         <filter-name>articleViewCountFilter</filter-name>
-        <url-pattern>/article/*</url-pattern>
+        <url-pattern>/article/view/*</url-pattern>
     </filter-mapping>
 
     <!--Spring MVC的前端控制器-->
