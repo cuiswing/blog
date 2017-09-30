@@ -29,7 +29,7 @@ public class ImageController {
     /**
      * 文件保存的路径：先暂时就保存在本机，暂时就使用变量来代替配置文件了
      */
-    private static final String imagePath = "/cui/blog/image";
+    private static final String imagePath = "/cui/blog/image/";
     /**
      * 图片服务器域名
      * 可以在tomcat服务器的/conf/server.xml 文件的host节点中配置：<Context docBase="/image/blog" path="/image" reloadable="true"/>
