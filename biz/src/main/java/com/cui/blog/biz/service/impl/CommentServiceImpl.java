@@ -48,7 +48,7 @@ public class CommentServiceImpl implements CommentService {
         commentDO.setEmail(commentDTO.getEmail());
         commentDO.setPersonalWebsite(commentDTO.getPersonalWebsite());
         commentDO.setContent(commentDTO.getContent());
-        commentDO.setId(commentDTO.getId());
+        commentDO.setIp(commentDTO.getIp());
         commentDAO.saveAndReturnKey(commentDO);
 
         articleDO.setCommentCount(articleDO.getCommentCount() + 1);
