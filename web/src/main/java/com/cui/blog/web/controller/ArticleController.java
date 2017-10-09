@@ -3,6 +3,7 @@ package com.cui.blog.web.controller;
 import com.alibaba.fastjson.JSON;
 import com.cui.blog.biz.dto.AdminAccountDTO;
 import com.cui.blog.biz.dto.ArticleDTO;
+import com.cui.blog.biz.dto.ArticleStatisticsInfoDTO;
 import com.cui.blog.biz.exception.BlogException;
 import com.cui.blog.biz.service.ArticleCategoryService;
 import com.cui.blog.biz.service.ArticleService;
@@ -74,6 +75,20 @@ public class ArticleController {
         Result<PageList<ArticleDTO>> result = new Result<>();
         PageList<ArticleDTO> pageList = articleService.pageQueryDesc(pageRequest.getPageNo(), pageRequest.getPageSize());
         result.setData(pageList);
+        return result;
+    }
+
+    /**
+     * 获取文章统计信息
+     *
+     * @return 查询结果集
+     */
+    @RequestMapping(value = "/article/statistics", method = RequestMethod.GET)
+    @ResponseBody
+    public Result listNew() {
+        Result<ArticleStatisticsInfoDTO> result = new Result<>();
+        ArticleStatisticsInfoDTO articleStatisticsInfoDTO = articleService.statistics();
+        result.setData(articleStatisticsInfoDTO);
         return result;
     }
 

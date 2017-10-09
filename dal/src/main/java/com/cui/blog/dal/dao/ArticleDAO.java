@@ -71,4 +71,11 @@ public interface ArticleDAO {
      * @return 数量
      */
     int getCountByTitle(Map map);
+
+    /**
+     * 获取文章数量
+     *
+     * @return 文章数量
+     */
+    int getCount();
 }

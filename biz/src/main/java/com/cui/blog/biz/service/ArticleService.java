@@ -1,6 +1,7 @@
 package com.cui.blog.biz.service;
 
 import com.cui.blog.biz.dto.ArticleDTO;
+import com.cui.blog.biz.dto.ArticleStatisticsInfoDTO;
 import com.cui.blog.biz.exception.BlogException;
 import com.cui.blog.dal.po.ArticleDO;
 import com.cui.common.page.PageList;
@@ -36,6 +37,13 @@ public interface ArticleService {
      * @return 分页数据集
      */
     PageList<ArticleDTO> pageQueryDesc(int pageNo, int pageSize);
+
+    /**
+     * 查询文章及评论数量
+     *
+     * @return 文章统计信息
+     */
+    ArticleStatisticsInfoDTO statistics();
 
     /**
      * 保存文章

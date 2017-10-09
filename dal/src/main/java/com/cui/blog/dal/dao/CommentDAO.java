@@ -49,4 +49,11 @@ public interface CommentDAO {
      * @return 数据库影响行数
      */
     int delete(Integer id);
+
+    /**
+     * 获取评论数量
+     *
+     * @return 评论数量
+     */
+    int getCount();
 }

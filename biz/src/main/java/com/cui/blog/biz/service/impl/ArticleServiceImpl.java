@@ -1,11 +1,13 @@
 package com.cui.blog.biz.service.impl;
 
 import com.cui.blog.biz.dto.ArticleDTO;
+import com.cui.blog.biz.dto.ArticleStatisticsInfoDTO;
 import com.cui.blog.biz.errormessage.BlogErrorMessageFactory;
 import com.cui.blog.biz.exception.BlogException;
 import com.cui.blog.biz.mappper.ArticleMapper;
 import com.cui.blog.biz.service.ArticleService;
 import com.cui.blog.dal.dao.ArticleDAO;
+import com.cui.blog.dal.dao.CommentDAO;
 import com.cui.blog.dal.po.ArticleDO;
 import com.cui.common.page.PageList;
 import com.github.pagehelper.PageHelper;
@@ -31,6 +33,8 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Resource
     private ArticleDAO articleDAO;
+    @Resource
+    private CommentDAO commentDAO;
 
     /**
      * 根据id获取文章
@@ -82,6 +86,22 @@ public class ArticleServiceImpl implements ArticleService {
             return new PageList<>(articleDTOS, (int) pageInfo.getTotal(), pageNo, pageSize);
         }
         return null;
+    }
+
+    /**
+     * 查询文章及评论数量
+     *
+     * @return 文章统计信息
+     */
+    @Override
+    public ArticleStatisticsInfoDTO statistics() {
+        int articleCount = articleDAO.getCount();
+        int commentCount = commentDAO.getCount();
+
+        ArticleStatisticsInfoDTO articleStatisticsInfoDTO = new ArticleStatisticsInfoDTO();
+        articleStatisticsInfoDTO.setArticleCount(articleCount);
+        articleStatisticsInfoDTO.setCommentCount(commentCount);
+        return articleStatisticsInfoDTO;
     }
 
     /**

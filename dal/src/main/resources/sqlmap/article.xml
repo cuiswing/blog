@@ -39,6 +39,11 @@
         SELECT * FROM `article`  WHERE enabled=1 ORDER BY id limit #{startIndex},#{pageSize}
     </select>
 
+    <!--获取文章数量-->
+    <select id="getCount" resultType="int">
+        SELECT count(*) FROM `article`  WHERE enabled=1
+    </select>
+
     <!--根据标题获取同名的数量-->
     <select id="getCountByTitle" parameterType="java.util.Map" resultType="int">
         SELECT count(*) FROM `article` WHERE enabled=1 AND title = #{title}
