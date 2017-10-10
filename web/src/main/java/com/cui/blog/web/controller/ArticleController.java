@@ -9,6 +9,7 @@ import com.cui.blog.biz.service.ArticleCategoryService;
 import com.cui.blog.biz.service.ArticleService;
 import com.cui.blog.dal.po.ArticleCategoryDO;
 import com.cui.blog.dal.po.ArticleDO;
+import com.cui.blog.web.filter.ArticleViewCountFilter;
 import com.cui.blog.web.form.PageRequest;
 import com.cui.blog.web.form.Result;
 import com.cui.blog.web.mappper.ArticleMapper;
@@ -20,9 +21,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 文章处理前端控制器
@@ -81,11 +84,11 @@ public class ArticleController {
     /**
      * 获取文章统计信息
      *
-     * @return 查询结果集
+     * @return 查询结果
      */
     @RequestMapping(value = "/article/statistics", method = RequestMethod.GET)
     @ResponseBody
-    public Result listNew() {
+    public Result statistics() {
         Result<ArticleStatisticsInfoDTO> result = new Result<>();
         ArticleStatisticsInfoDTO articleStatisticsInfoDTO = articleService.statistics();
         result.setData(articleStatisticsInfoDTO);
@@ -152,5 +155,22 @@ public class ArticleController {
             result.setErrorMessage(e.getMessage());
         }
         return result;
+    }
+
+    /**
+     * 服务停止前保存访问量到DB
+     */
+    @PreDestroy
+    public void saveViewCount2DB() {
+        LOGGER.info("before My Blog application context Destroyed,save article view count to DB!");
+        for (Map.Entry<Integer, Integer> entry : ArticleViewCountFilter.idAndCountMap.entrySet()) {
+            try {
+                if (entry.getValue() > 0) {
+                    articleService.updateViewCount(entry.getKey(), entry.getValue());
+                }
+            } catch (BlogException e) {
+                LOGGER.error("<web><ArticleController><saveViewCount2DB><><>服务停止前保存访问量到DB时出错：", e);
+            }
+        }
     }
 }

@@ -35,10 +35,10 @@ public class ArticleViewCountFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Integer id = Integer.valueOf(request.getRequestURI().substring(request.getRequestURI().lastIndexOf("/") + 1));
-        Set<Integer> viewedArticleIds = (Set<Integer>) session.getAttribute("viewedArticleIds");
         Object user = session.getAttribute("user");
         if (user == null) {
+            Integer id = Integer.valueOf(request.getRequestURI().substring(request.getRequestURI().lastIndexOf("/") + 1));
+            Set<Integer> viewedArticleIds = (Set<Integer>) session.getAttribute("viewedArticleIds");
             if (viewedArticleIds == null) {
                 viewedArticleIds = new HashSet<>();
                 viewedArticleIds.add(id);
