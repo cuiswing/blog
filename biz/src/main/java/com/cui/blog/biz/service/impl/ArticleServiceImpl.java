@@ -167,9 +167,6 @@ public class ArticleServiceImpl implements ArticleService {
         articleDO.setContent(articleDTO.getContent());
         //只有在文章分类变更时才需要更新并更新分类统计数量
         if (!articleDO.getArticleCategoryId().equals(articleDTO.getArticleCategoryId())) {
-            articleDO.setArticleCategoryId(articleDTO.getArticleCategoryId());
-            articleDO.setCategoryName(articleDTO.getCategoryName());
-
             ArticleCategoryDO newCategoryDO = articleCategoryDAO.getById(articleDTO.getArticleCategoryId());
             newCategoryDO.setArticleCount(newCategoryDO.getArticleCount() + 1);
             articleCategoryDAO.update(newCategoryDO);
@@ -177,6 +174,9 @@ public class ArticleServiceImpl implements ArticleService {
             ArticleCategoryDO oldCategoryDO = articleCategoryDAO.getById(articleDO.getArticleCategoryId());
             oldCategoryDO.setArticleCount(oldCategoryDO.getArticleCount() - 1);
             articleCategoryDAO.update(oldCategoryDO);
+
+            articleDO.setArticleCategoryId(articleDTO.getArticleCategoryId());
+            articleDO.setCategoryName(articleDTO.getCategoryName());
         }
 
         return articleDAO.update(articleDO);
