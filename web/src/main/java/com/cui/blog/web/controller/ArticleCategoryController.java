@@ -26,7 +26,6 @@ import java.util.List;
  * Created by cuishixiang on 2017-09-07.
  */
 @Controller
-@RequestMapping("/admin/category")
 public class ArticleCategoryController {
     private static final Logger LOGGER = LoggerFactory.getLogger(ArticleCategoryController.class);
 
@@ -38,7 +37,7 @@ public class ArticleCategoryController {
      *
      * @return 列表页面
      */
-    @RequestMapping("")
+    @RequestMapping("/admin/category")
     public String getListPage() {
         return "category/list";
     }
@@ -49,7 +48,7 @@ public class ArticleCategoryController {
      *
      * @return 文章类别编辑页面
      */
-    @RequestMapping(value = "/edit", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/category/edit", method = RequestMethod.GET)
     public String edit() {
         return "articleCategory/edit";
     }
@@ -59,7 +58,7 @@ public class ArticleCategoryController {
      *
      * @return 查询结果集
      */
-    @RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/category/list", method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
     public Result list() {
         Result<List<ArticleCategoryDO>> result = new Result<>();
@@ -73,7 +72,7 @@ public class ArticleCategoryController {
      *
      * @return 保存结果
      */
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/category/save", method = RequestMethod.POST)
     @ResponseBody
     public Result save(HttpSession session, @RequestBody ArticleCategoryVO articleCategoryVO, BindingResult bindingResult) {
         Result<ArticleCategoryDO> result = new Result<>();

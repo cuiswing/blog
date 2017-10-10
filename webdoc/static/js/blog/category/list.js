@@ -21,7 +21,7 @@ $(document).ready(function () {
             loadGridData: function () {
                 $.ajax({
                     type: "GET",
-                    url: __ctx + "/admin/category/list",
+                    url: __ctx + "/category/list",
                     success: function (result) {
                         if (result.success) {
                             Vue.set(category_list.infos, 'data', result.data);
