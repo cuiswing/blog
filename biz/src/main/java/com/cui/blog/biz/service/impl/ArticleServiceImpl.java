@@ -6,13 +6,16 @@ import com.cui.blog.biz.errormessage.BlogErrorMessageFactory;
 import com.cui.blog.biz.exception.BlogException;
 import com.cui.blog.biz.mappper.ArticleMapper;
 import com.cui.blog.biz.service.ArticleService;
+import com.cui.blog.dal.dao.ArticleCategoryDAO;
 import com.cui.blog.dal.dao.ArticleDAO;
 import com.cui.blog.dal.dao.CommentDAO;
+import com.cui.blog.dal.po.ArticleCategoryDO;
 import com.cui.blog.dal.po.ArticleDO;
 import com.cui.common.page.PageList;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -33,6 +36,8 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Resource
     private ArticleDAO articleDAO;
+    @Resource
+    private ArticleCategoryDAO articleCategoryDAO;
     @Resource
     private CommentDAO commentDAO;
 
@@ -111,6 +116,7 @@ public class ArticleServiceImpl implements ArticleService {
      * @return 文章DO
      */
     @Override
+    @Transactional
     public ArticleDO save(ArticleDTO articleDTO) throws BlogException {
         Map<String, Object> param = new HashMap<>();
         param.put("id", articleDTO.getId());
@@ -130,6 +136,11 @@ public class ArticleServiceImpl implements ArticleService {
         articleDO.setArticleCategoryId(articleDTO.getArticleCategoryId());
         articleDO.setCategoryName(articleDTO.getCategoryName());
         articleDAO.saveAndReturnKey(articleDO);
+
+        ArticleCategoryDO articleCategoryDO = articleCategoryDAO.getById(articleDTO.getArticleCategoryId());
+        articleCategoryDO.setArticleCount(articleCategoryDO.getArticleCount() + 1);
+        articleCategoryDAO.update(articleCategoryDO);
+
         return articleDO;
     }
 
@@ -140,6 +151,7 @@ public class ArticleServiceImpl implements ArticleService {
      * @return 数据影响行数
      */
     @Override
+    @Transactional
     public int update(ArticleDTO articleDTO) throws BlogException {
         Map<String, Object> param = new HashMap<>();
         param.put("id", articleDTO.getId());
@@ -153,8 +165,20 @@ public class ArticleServiceImpl implements ArticleService {
         articleDO.setUpdateUser(articleDTO.getUpdateUser());
         articleDO.setTitle(articleDTO.getTitle());
         articleDO.setContent(articleDTO.getContent());
-        articleDO.setArticleCategoryId(articleDTO.getArticleCategoryId());
-        articleDO.setCategoryName(articleDTO.getCategoryName());
+        //只有在文章分类变更时才需要更新并更新分类统计数量
+        if (!articleDO.getArticleCategoryId().equals(articleDTO.getArticleCategoryId())) {
+            articleDO.setArticleCategoryId(articleDTO.getArticleCategoryId());
+            articleDO.setCategoryName(articleDTO.getCategoryName());
+
+            ArticleCategoryDO newCategoryDO = articleCategoryDAO.getById(articleDTO.getArticleCategoryId());
+            newCategoryDO.setArticleCount(newCategoryDO.getArticleCount() + 1);
+            articleCategoryDAO.update(newCategoryDO);
+
+            ArticleCategoryDO oldCategoryDO = articleCategoryDAO.getById(articleDO.getArticleCategoryId());
+            oldCategoryDO.setArticleCount(oldCategoryDO.getArticleCount() - 1);
+            articleCategoryDAO.update(oldCategoryDO);
+        }
+
         return articleDAO.update(articleDO);
     }
 
