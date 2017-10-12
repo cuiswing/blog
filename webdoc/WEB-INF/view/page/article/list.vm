@@ -76,8 +76,7 @@
                                 <td v-cloak>{{article.updateTime | formatDate('YYYY-MM-DD HH:mm:ss')}}</td>
                                 <td>
                                     <div>
-                                        <a v-bind:href="'${rc.contextPath}/admin/article/edit?id='+article.id"
-                                           target="_blank">修改</a>
+                                        <a v-bind:href="'${rc.contextPath}/admin/article/edit?id='+article.id">修改</a>
                                         <a v-bind:href="'${rc.contextPath}/admin/article/delete/'+article.id">删除</a>
                                     </div>
                                 </td>
