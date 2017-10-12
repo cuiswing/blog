@@ -43,6 +43,10 @@
         <appender-ref ref="STDOUT-APPENDER"/>
     </logger>
 
+    <logger name="com.cui.blog.dal.dao" level="DEBUG" additivity="false">
+        <appender-ref ref="ALL-APPENDER"/>
+    </logger>
+
     <root level="INFO">
         <appender-ref ref="ALL-APPENDER"/>
         <appender-ref ref="ERROR-APPENDER"/>
