@@ -23,7 +23,8 @@ public class CommentMapper {
         commentDTO.setArticleId(commentVO.getArticleId());
         commentDTO.setUsername(commentVO.getUsername().trim());
         commentDTO.setEmail(commentVO.getEmail().trim());
-        commentDTO.setPersonalWebsite(commentVO.getPersonalWebsite() == null ? "" : commentVO.getPersonalWebsite().trim());
+        //这个得注意下，如果用户没有输入http://或https://，则将其加上，防止打开时跑到相对路径上去了
+        commentDTO.setPersonalWebsite(commentVO.getPersonalWebsite() == null ? "" : commentVO.getPersonalWebsite().trim().startsWith("http") ? commentVO.getPersonalWebsite().trim() : "http://" + commentVO.getPersonalWebsite().trim());
         commentDTO.setContent(commentVO.getContent().trim());
         return commentDTO;
     }
