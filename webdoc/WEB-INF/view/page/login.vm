@@ -112,7 +112,7 @@ License: You must have a valid license purchased only from themeforest(the above
     </form>
     <!-- END LOGIN FORM -->
     <!-- BEGIN FORGOT PASSWORD FORM -->
-    <form class="forget-form" action="index.html" method="post">
+    <form class="forget-form" action="../../index.html" method="post">
         <h3>Forget Password ?</h3>
         <p>
             Enter your e-mail address below to reset your password.
@@ -128,7 +128,7 @@ License: You must have a valid license purchased only from themeforest(the above
     </form>
     <!-- END FORGOT PASSWORD FORM -->
     <!-- BEGIN REGISTRATION FORM -->
-    <form class="register-form" action="index.html" method="post">
+    <form class="register-form" action="../../index.html" method="post">
         <h3>注册</h3>
         <p class="hint">
             Enter your personal details below:

@@ -67,7 +67,7 @@
                             <tr class="odd gradeX" v-for="article in infos.data">
                                 <input type="hidden" v-bind:value="article.id"/>
                                 <td>
-                                    <a v-on:click.prevent="viewArticle(article.id)" v-text="article.title"></a>
+                                    <a :href="'//cuishixiang.cn/article.html?id='+article.id" target="_blank" v-cloak>{{article.title}}</a>
                                 </td>
                                 <td v-cloak>{{article.visitCount}}</td>
                                 <td v-cloak>{{article.commentCount}}</td>

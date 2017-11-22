@@ -38,7 +38,8 @@ License: You must have a valid license purchased only from themeforest(the above
             <!-- BEGIN LOGO -->
             <div class="page-logo">
                 <a href="index.html">
-                    <img src="${rc.contextPath}/img/logo-default.png" alt="logo" class="logo-default">
+                    <h1>Blog后台管理</h1>
+##                    <img src="${rc.contextPath}/img/logo-default.png" alt="logo" class="logo-default">
                 </a>
             </div>
             <!-- END LOGO -->
@@ -94,26 +95,26 @@ License: You must have a valid license purchased only from themeforest(the above
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-sm-6 col-xs-12 footer-block">
-                <h2>About</h2>
+                <h2>关于</h2>
                 <p>
                     Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam dolore.
                 </p>
             </div>
             <div class="col-md-3 col-sm-6 col-xs12 footer-block">
-                <h2>Subscribe Email</h2>
+                <h2>订阅</h2>
                 <div class="subscribe-form">
                     <form action="javascript:;">
                         <div class="input-group">
                             <input type="text" placeholder="mail@email.com" class="form-control">
                             <span class="input-group-btn">
-							<button class="btn" type="submit">Submit</button>
+							<button class="btn" type="submit">提交</button>
 							</span>
                         </div>
                     </form>
                 </div>
             </div>
             <div class="col-md-3 col-sm-6 col-xs-12 footer-block">
-                <h2>Follow Us On</h2>
+                <h2>关注我</h2>
                 <ul class="social-icons">
                     <li>
                         <a href="javascript:;" data-original-title="rss" class="rss"></a>
@@ -139,10 +140,9 @@ License: You must have a valid license purchased only from themeforest(the above
                 </ul>
             </div>
             <div class="col-md-3 col-sm-6 col-xs-12 footer-block">
-                <h2>Contacts</h2>
+                <h2>联系方式</h2>
                 <address class="margin-bottom-40">
-                    Phone: XXXXXXXX<br>
-                    Email: <a href="mailto:info@metronic.com">hh-csq@163.com</a>
+                    Email: <a href="mailto:hh-csq@163.com">hh-csq@163.com</a>
                 </address>
             </div>
         </div>

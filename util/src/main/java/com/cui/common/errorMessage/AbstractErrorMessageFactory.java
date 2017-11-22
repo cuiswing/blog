@@ -18,6 +18,7 @@ public abstract class AbstractErrorMessageFactory extends AbstractMessageFactory
      *
      * @return 返回资源文件名称
      */
+    @Override
     protected abstract String provideBundleName();
 
     /**
