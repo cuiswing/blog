@@ -30,7 +30,7 @@
         <servlet.version>4.0.0</servlet.version>
         <velocity.version>1.7</velocity.version>
         <velocity.tools.version>2.0</velocity.tools.version>
-        <jackson.version>2.9.1</jackson.version>
+        <jackson.version>2.9.9</jackson.version>
         <pagehelper.version>5.1.1</pagehelper.version>
         <fastjson.version>1.2.38</fastjson.version>
         <commons-io.version>2.5</commons-io.version>
