@@ -19,7 +19,7 @@
 
     <properties>
         <util.version>1.0.0</util.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <spring.version>4.3.5.RELEASE</spring.version>
         <logback.version>1.2.3</logback.version>
         <mysql.version>6.0.3</mysql.version>
